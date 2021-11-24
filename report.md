@@ -498,7 +498,64 @@ void MainWindow::elevatorControler(Elevator e[])
 ### mainwindow.cpp
 
 ```c++
-void MainWindow::on_beginbtn_clicked()		//开始离散事件的模拟{    init();		//初始化电梯信息、电梯乘客栈、乘客等待队列    int time=0;		//当前时间    int t[2]={0};	//每个电梯的测试时间    int runtime;	//输入的模拟运行事件    QString move[8]={"Opening","Opened", "Closing", "Closed", "Moving", "SlowDown", "Waiting", "Accelerate"};    QString state[3]={"GoingUp", "GoingDown", "Idle"};    runtime=ui->timeedit->text().toInt();	//获取文本框的运行时间    while(time<runtime)    {        if(nextpassengertime==0)	//当距离下一个乘客来临时时间为0，则生成一个新乘客            newPassenger();        else            nextpassengertime--;	//否则，时间流逝        for(int i=0;i<=4;i++)		//在每个时间段判断所有等待队列中的乘客是否放弃        {            giveupPassenger(waitqueue[0][i],e,i);            giveupPassenger(waitqueue[1][i],e,i);        }        elevatorControler(e);		//调用电梯        for(int i=0;i<2;i++)        {            if(e[i]->currentmove==Opened)	//在电梯打开门的时候            {                if(t[i]==IN_OUT_TIME)                {                    t[i]=0;                    /*如果有人进出，就将测试时间重置*/                    if(outPassenger(e[i],i)==false)                    {                        if(inPassenger(e[i],i)==true)                            e[i]->statetime=CLOSE_TEST_TIME;                    }                    else                        e[i]->statetime=CLOSE_TEST_TIME;                }                else                    t[i]++;		//没有人进出的话就记录时间            }            if(timeUp(e[i])==true)	//当前动作时间已结束            {                changeMove(e[i],i);	//改变电梯当前动作以及状态                //qDebug()<<"电梯"<<i<<"动作"<<move[e[i]->currentmove]<<"状态"<<state[e[i]->State]<<"time"<<e[i]->statetime;            }            else                e[i]->statetime--;	//没有结束时，则时间流逝        }        if(time%10==0)	//每隔10t进行一次检测        {            ui->timetxt->clear();            ui->timetxt->setText(QString::number(time));        }        time++;        mySleep(10);	//延时    }    qDebug()<<"结束";}
+void MainWindow::on_beginbtn_clicked()		//开始离散事件的模拟
+{
+    init();		//初始化电梯信息、电梯乘客栈、乘客等待队列
+    int time=0;		//当前时间
+    int t[2]={0};	//每个电梯的测试时间
+    int runtime;	//输入的模拟运行事件
+    QString move[8]={"Opening","Opened", "Closing", "Closed", "Moving", "SlowDown", "Waiting", "Accelerate"};
+    QString state[3]={"GoingUp", "GoingDown", "Idle"};
+    runtime=ui->timeedit->text().toInt();	//获取文本框的运行时间
+    while(time<runtime)
+    {
+        if(nextpassengertime==0)	//当距离下一个乘客来临时时间为0，则生成一个新乘客
+            newPassenger();
+        else
+            nextpassengertime--;	//否则，时间流逝
+        for(int i=0;i<=4;i++)		//在每个时间段判断所有等待队列中的乘客是否放弃
+        {
+            giveupPassenger(waitqueue[0][i],e,i);
+            giveupPassenger(waitqueue[1][i],e,i);
+        }
+        elevatorControler(e);		//调用电梯
+        for(int i=0;i<2;i++)
+        {
+            if(e[i]->currentmove==Opened)	//在电梯打开门的时候
+            {
+                if(t[i]==IN_OUT_TIME)
+                {
+                    t[i]=0;
+                    /*如果有人进出，就将测试时间重置*/
+                    if(outPassenger(e[i],i)==false)
+                    {
+                        if(inPassenger(e[i],i)==true)
+                            e[i]->statetime=CLOSE_TEST_TIME;
+                    }
+                    else
+                        e[i]->statetime=CLOSE_TEST_TIME;
+                }
+                else
+                    t[i]++;		//没有人进出的话就记录时间
+            }
+            if(timeUp(e[i])==true)	//当前动作时间已结束
+            {
+                changeMove(e[i],i);	//改变电梯当前动作以及状态
+                //qDebug()<<"电梯"<<i<<"动作"<<move[e[i]->currentmove]<<"状态"<<state[e[i]->State]<<"time"<<e[i]->statetime;
+            }
+            else
+                e[i]->statetime--;	//没有结束时，则时间流逝
+        }
+        if(time%10==0)	//每隔10t进行一次检测
+        {
+            ui->timetxt->clear();
+            ui->timetxt->setText(QString::number(time));
+        }
+        time++;
+        mySleep(10);	//延时
+    }
+    qDebug()<<"结束";
+}
 ```
 
 ## 调试分析
