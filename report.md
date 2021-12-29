@@ -71,7 +71,7 @@
 
 首先介绍`mainwindow.ui`中各组件的作用和名称：
 
-![](C:\Users\蓝\Desktop\电梯图片\电梯主界面.png)
+![](images\电梯主界面.png)
 
 测试按钮就是开始进行离散事件模拟的的开始按钮。
 
@@ -82,9 +82,10 @@
 等待乘客文本框中，上面的框代表当层的上行乘客，下面的框代表当层的下行乘客。
 
 <center class="half">
-    <img src="C:\Users\蓝\Desktop\电梯图片\名称1.png" width="300" height="350"/>
-	<img src="C:\Users\蓝\Desktop\电梯图片\名称2.png" width="300" />
+    <img src="images\名称1.png" width="300" height="350"/>
+	<img src="images\名称2.png" width="300" />
 </center>
+
 
 
 上述便是设计界面中重要组件的名称。
@@ -580,23 +581,23 @@ void MainWindow::on_beginbtn_clicked()		//开始离散事件的模拟
 
 程序刚开始的界面是这样：
 
-<img src="C:\Users\蓝\Desktop\电梯图片\初始化.png" width="400" />
+<img src="images\初始化.png" width="400" />
 
 当输入一个运行时间后，程序会开始离散事件模拟：
 
-<img src="C:\Users\蓝\Desktop\电梯图片\运行1.png" width="400" />
+<img src="images\运行1.png" width="400" />
 
-<img src="C:\Users\蓝\Desktop\电梯图片\运行2.png" width="400" />
+<img src="images\运行2.png" width="400" />
 
-<img src="C:\Users\蓝\Desktop\电梯图片\运行3.png" width="400" />
+<img src="images\运行3.png" width="400" />
 
 通过改变乘客出现的频率，可以模拟出高峰时期，此时电梯内的人会多很多。
 
-<img src="C:\Users\蓝\Desktop\电梯图片\运行4.png" width="400" />
+<img src="images\运行4.png" width="400" />
 
 最后这是结束状态：
 
-<img src="C:\Users\蓝\Desktop\电梯图片\结束状态.png" width="400" />
+<img src="images\结束状态.png" width="400" />
 
 ## 实验总结
 
