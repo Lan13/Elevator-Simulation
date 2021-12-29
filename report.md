@@ -71,7 +71,7 @@
 
 首先介绍`mainwindow.ui`中各组件的作用和名称：
 
-![](images\电梯主界面.png)
+<img src="images\电梯主界面.png" width="400" />
 
 测试按钮就是开始进行离散事件模拟的的开始按钮。
 
